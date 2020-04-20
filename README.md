@@ -295,9 +295,9 @@ the annotation `@Tag("IntegrationTest")`.
 
 ## Adding the library to your build
 
-The group id of Amazon Neptune CSV to RDF Converter is `software.amazon.neptune`, its artifact
-id is `amazon-neptune-csv2rdf`. In case you want to use the library as part of another project,
-use the following to add a dependency in Maven:
+The group id of Amazon Neptune CSV to RDF Converter \[[javadoc](https://www.javadoc.io/doc/software.amazon.neptune/amazon-neptune-csv2rdf)\]
+is `software.amazon.neptune`, its artifact id is `amazon-neptune-csv2rdf`. In case you want to use
+the library as part of another project, use the following to add a dependency in Maven:
 
 	<dependency>
 		<groupId>software.amazon.neptune</groupId>
