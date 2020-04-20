@@ -13,7 +13,19 @@ about the input and [RDF 1.1 N-Quads](https://www.w3.org/TR/n-quads/) about the 
 
 The input files need to be UTF-8 encoded. The same encoding is used for the output files.
 
-The library is available as executable Jar file and can be run from the command line by `java -jar amazon-neptune-csv2rdf.jar -i <input directory> -o <output directory>`. Use `java -jar amazon-neptune-csv2rdf.jar -h` to see all options.
+The library is available as executable Jar file and can be run from the command line by `java -jar amazon-neptune-csv2rdf.jar -i <input directory> -o <output directory>`. Use `java -jar amazon-neptune-csv2rdf.jar -h` to see all options:
+
+	Usage: java -jar amazon-neptune-csv2rdf.jar [-hV] [-c=<configuration file>]
+	       -i=<input directory> -o=<output directory>
+	  -c, --config=<configuration file>
+	                  Propery file containing the configuration.
+	  -h, --help      Show this help message and exit.
+	  -i, --input=<input directory>
+	                  Directory containing the CSV files (UTF-8 encoded).
+	  -o, --output=<output directory>
+	                  Directory for writing the RDF files (UTF-8 encoded); will be
+	                    created if it does not exist.
+	  -V, --version   Print version information and exit.
 
 The conversion is based on two steps. First, a **general mapping** from property graph vertices and edges
 to RDF statements is applied to the input files. The optional second step **transforms RDF resource IRIs**
@@ -169,7 +181,7 @@ according to the grouping numbers. All four configuration items are required:
  value.
 * `dstPattern` is the new URI, which must contain a
  `{{VALUE}}` substring which is then substituted with the value of
- `valueProp`.
+ `propertyUri`.
 
 *Example:*
 
@@ -184,7 +196,7 @@ given that there are the statements:
 	http://example.org/resource/123 a http://example.org/class/Country.
 	http://example.org/resource/123 http://example.org/datatypeProperty/code "FR".
 
-Note that we assume that the property `valueProp` is unique for each resource, otherwise a runtime exception
+Note that we assume that the property `propertyUri` is unique for each resource, otherwise a runtime exception
 will be thrown. Also note that the post transformation is applied using a two-pass algorithm over the
 generated data, and the translation mapping is kept fully in memory. This means the property is suitable
 only in cases where the number of mappings is small or if the amount of main memory is large.
@@ -273,7 +285,25 @@ example above) of the following property graph
 
 Amazon Neptune CSV to RDF Converter is a Java Maven project and requires JDK 8 and Maven 3 to build from source. Change
 into the source folder containing the file `pom.xml` and run `mvn clean install`. The directory `target/` contains the
-executable Jar library `amazon-neptune-csv2rdf.jar` after a successful build.
+executable Jar library `amazon-neptune-csv2rdf.jar` after a successful build. The executable Jar is not attached to the
+build artifacts.
+
+Activate the profile *integration* for running the integration tests during the build by using
+`mvn -Pintegration clean install`. Integration tests are distinguished from other tests by adding
+the annotation `@Tag("IntegrationTest")`.
+
+
+## Adding the library to your build
+
+The group id of Amazon Neptune CSV to RDF Converter is `software.amazon.neptune`, its artifact
+id is `amazon-neptune-csv2rdf`. In case you want to use the library as part of another project,
+use the following to add a dependency in Maven:
+
+	<dependency>
+		<groupId>software.amazon.neptune</groupId>
+		<artifactId>amazon-neptune-csv2rdf</artifactId>
+		<version>1.0.0</version>
+	</dependency>
 
 
 ## License
@@ -283,4 +313,4 @@ Amazon Neptune CSV to RDF Converter is available under [Apache License, Version 
 
 ----
 
-Copyright Amazon.com Inc. or its affiliates.
+Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.

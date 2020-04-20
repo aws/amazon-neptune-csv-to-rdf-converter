@@ -1,0 +1,4 @@
+~id,~label,~from,~to,since,personally
+1,knows,2,3,yesterday,
+1,knows,2,3,tomorrow,
+1,knows,2,3,,true

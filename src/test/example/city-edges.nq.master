@@ -1,0 +1,3 @@
+<city:S> <edge:route> <city:V> <vertex:a> .
+<vertex:a> <eproperty:distance> "166" <dng:/> .
+<vertex:a> <eproperty:type> "highway" <dng:/> .

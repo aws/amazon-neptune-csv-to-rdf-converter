@@ -1,0 +1,6 @@
+<http://aws.amazon.com/neptune/csv2rdf/resource/1> <http://aws.amazon.com/neptune/csv2rdf/objectProperty/route> <http://aws.amazon.com/neptune/csv2rdf/resource/3> <http://aws.amazon.com/neptune/csv2rdf/resource/11> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/11> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/stars> "5"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/2> <http://aws.amazon.com/neptune/csv2rdf/objectProperty/route> <http://aws.amazon.com/neptune/csv2rdf/resource/4> <http://aws.amazon.com/neptune/csv2rdf/resource/12> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/12> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/stars> "2"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/3> <http://aws.amazon.com/neptune/csv2rdf/objectProperty/route> <http://aws.amazon.com/neptune/csv2rdf/resource/1> <http://aws.amazon.com/neptune/csv2rdf/resource/13> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/13> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/stars> "3"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .

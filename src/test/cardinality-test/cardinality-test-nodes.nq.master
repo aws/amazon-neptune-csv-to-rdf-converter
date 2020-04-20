@@ -1,0 +1,6 @@
+<vertex:2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <type:Person> <dng:/> .
+<vertex:2> <vproperty:name> "Alice" <dng:/> .
+<vertex:3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <type:Person> <dng:/> .
+<vertex:3> <vproperty:name> "Bob" <dng:/> .
+<vertex:3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <dt:/> <dng:/> .
+<vertex:3> <vproperty:name> "Robert" <dng:/> .

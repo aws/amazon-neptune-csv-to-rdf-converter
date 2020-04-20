@@ -1,0 +1,16 @@
+<http://aws.amazon.com/neptune/csv2rdf/resource/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://aws.amazon.com/neptune/csv2rdf/class/Country> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/1> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/type> "Country" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/1> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/code> "{::Heizölrückstoßabdämpfungsventil::}" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/1> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/color> "blue" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://aws.amazon.com/neptune/csv2rdf/class/City> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/2> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/type> "City" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/2> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/code> "B" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/2> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/color> "green" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://aws.amazon.com/neptune/csv2rdf/class/Country> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/3> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/type> "Country" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/3> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/code> "C" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/3> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/color> "red" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://aws.amazon.com/neptune/csv2rdf/class/Country> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/4> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/type> "Country" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/4> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/code> "D" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://aws.amazon.com/neptune/csv2rdf/resource/4> <http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/color> "black" <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .

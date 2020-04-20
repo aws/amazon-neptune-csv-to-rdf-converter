@@ -1,0 +1,8 @@
+<city:S> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <type:City> <dng:/> .
+<city:S> <http://www.w3.org/2000/01/rdf-schema#label> "Seattle" <dng:/> .
+<city:S> <vproperty:code> "S" <dng:/> .
+<city:S> <edge:country> <country:USA> <dng:/> .
+<city:V> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <type:City> <dng:/> .
+<city:V> <http://www.w3.org/2000/01/rdf-schema#label> "Vancouver" <dng:/> .
+<city:V> <vproperty:code> "V" <dng:/> .
+<city:V> <edge:country> <country:CA> <dng:/> .

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<!-- Check Csv2Rdf and Csv2RdfTest before making changes. 
+	
+		Logging for software.amazon.neptune.csv2rdf is supposed to be configured as: 
+			* INFO to stdout (but no DEBUG, no TRACE, no WARN, no ERROR)
+			* WARN to stderr (but no ERROR)
+			* ALL to amazon-neptune-csv2rdf.log
+	-->
+	<Appenders>
+		<Console name="stdout" target="SYSTEM_OUT">
+			<PatternLayout pattern="%msg%n" />
+			<!-- deny warnings and higher log levels -->
+			<ThresholdFilter level="WARN" onMatch="DENY"
+				onMismatch="NEUTRAL" />
+		</Console>
+		<Console name="stderr" target="SYSTEM_ERR">
+			<PatternLayout pattern="%msg%n" />
+			<Filters>
+				<ThresholdFilter level="ERROR" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="WARN" onMatch="ACCEPT" />
+			</Filters>
+		</Console>
+		<!-- immediateFlush must be set to true for Csv2RdfLogOutputTest.checkLogOutput() -->
+		<!-- see https://logging.apache.org/log4j/2.x/manual/lookups.html#SystemPropertiesLookup about parameters and default values -->
+		<File name="File"
+			fileName="${sys:software.amazon.neptune.csv2rdf.log.file:-amazon-neptune-csv2rdf.log}"
+			immediateFlush="${sys:software.amazon.neptune.csv2rdf.log.immediateFlush:-false}"
+			append="true">
+			<PatternLayout
+				pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="software.amazon.neptune.csv2rdf" level="INFO">
+			<AppenderRef ref="stdout" />
+			<AppenderRef ref="stderr" />
+		</Logger>
+		<Root level="WARN">
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>

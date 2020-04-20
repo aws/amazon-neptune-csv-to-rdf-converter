@@ -1,0 +1,5 @@
+~id,~label,type:string,code:string,color
+1,country,Country, {::Heizölrückstoßabdämpfungsventil::},blue
+2,city,City,B,green
+3,country,Country,C,red
+4,country,Country,D,black

@@ -1,0 +1,4 @@
+~id,~from,~to,~label,stars:int
+11,1,3,route,5
+12,2,4,route,2
+13,3,1,route,3
