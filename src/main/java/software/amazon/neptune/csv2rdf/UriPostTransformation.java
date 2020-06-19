@@ -42,7 +42,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <h1>URI Post Transformation</h1>
+ * <h2>URI Post Transformation</h2>
  *
  * URI Post Transformations are used to transform RDF resource IRIs into more
  * readable ones.
