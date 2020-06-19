@@ -18,7 +18,6 @@ package software.amazon.neptune.csv2rdf;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -86,12 +85,8 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 			this.csvParser = setupParser(createInputStreamReader(ins));
 			this.iterator = this.csvParser.iterator();
 			this.header = setupHeader();
-		} catch (FileNotFoundException e) {
-			this.close();
+		} catch (IOException e) {
 			throw new Csv2RdfException("Error creating input stream for CSV file " + file.getAbsolutePath(), e);
-		} catch (Exception e) {
-			this.close();
-			throw e;
 		}
 	}
 
@@ -103,14 +98,9 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 	 */
 	public NeptuneCsvInputParser(final InputStream ins) {
 
-		try {
 			this.csvParser = setupParser(createInputStreamReader(ins));
 			this.iterator = this.csvParser.iterator();
 			this.header = setupHeader();
-		} catch (Exception e) {
-			this.close();
-			throw e;
-		}
 	}
 
 	/**
