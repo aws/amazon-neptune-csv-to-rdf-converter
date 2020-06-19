@@ -18,6 +18,7 @@ package software.amazon.neptune.csv2rdf;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -81,7 +82,29 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 	public NeptuneCsvInputParser(final File file) {
 
 		try {
-			this.csvParser = setupParser(createInputStreamReader(file));
+			InputStream ins = new FileInputStream(file);
+			this.csvParser = setupParser(createInputStreamReader(ins));
+			this.iterator = this.csvParser.iterator();
+			this.header = setupHeader();
+		} catch (FileNotFoundException e) {
+			this.close();
+			throw new Csv2RdfException("Error creating input stream for CSV file " + file.getAbsolutePath(), e);
+		} catch (Exception e) {
+			this.close();
+			throw e;
+		}
+	}
+
+	/**
+	 * Sets up a {@link CSVRecord} iterator over the input stream and parse the first
+	 * row as header.
+	 *
+	 * @param ins CSV input stream
+	 */
+	public NeptuneCsvInputParser(final InputStream ins) {
+
+		try {
+			this.csvParser = setupParser(createInputStreamReader(ins));
 			this.iterator = this.csvParser.iterator();
 			this.header = setupHeader();
 		} catch (Exception e) {
@@ -166,17 +189,16 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 
 	/**
 	 *
-	 * Create an input stream reader over the given file
+	 * Create an input stream reader over the given input stream.
 	 *
-	 * @param file the Neptune CSV property graph input file
+	 * @param ins the Neptune CSV property graph input stream
 	 * @return input stream reader
 	 */
-	private Reader createInputStreamReader(@NonNull final File file) {
+	private Reader createInputStreamReader(@NonNull final InputStream ins) {
 
 		BufferedInputStream bufferedStream = null;
 		try {
-			InputStream inputStream = new FileInputStream(file);
-			bufferedStream = new BufferedInputStream(inputStream);
+			bufferedStream = new BufferedInputStream(ins);
 
 			return new InputStreamReader(bufferedStream, StandardCharsets.UTF_8.name());
 		} catch (UnsupportedEncodingException e) {
@@ -189,9 +211,7 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 							e1));
 				}
 			}
-			throw new Csv2RdfException("Encoding not supported for decoding " + file.getAbsolutePath(), e);
-		} catch (IOException e) {
-			throw new Csv2RdfException("Error creating input stream for CSV file " + file.getAbsolutePath(), e);
+			throw new Csv2RdfException("Encoding not supported for decoding input stream", e);
 		}
 	}
 
