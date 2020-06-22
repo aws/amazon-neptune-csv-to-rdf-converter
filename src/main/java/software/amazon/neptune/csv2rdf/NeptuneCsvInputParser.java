@@ -77,6 +77,9 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 	 * row as header.
 	 *
 	 * @param file CSV input file
+	 * @throws Csv2RdfException if the file cannot be opened
+	 * @throws Csv2RdfException if the CSV parser cannot be created
+	 * @throws Csv2RdfException if there is no header column in the data
 	 */
 	public NeptuneCsvInputParser(final File file) {
 
@@ -95,6 +98,8 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 	 * row as header.
 	 *
 	 * @param ins CSV input stream
+	 * @throws Csv2RdfException if the CSV parser cannot be created
+	 * @throws Csv2RdfException if there is no header column in the data
 	 */
 	public NeptuneCsvInputParser(final InputStream ins) {
 
