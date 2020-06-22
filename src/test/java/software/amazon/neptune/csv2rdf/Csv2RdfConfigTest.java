@@ -154,10 +154,10 @@ public class Csv2RdfConfigTest {
 		Exception exception = assertThrows(Csv2RdfException.class,
 				() -> new PropertyGraph2RdfConverter(config.toFile()));
 
-		assertEquals(
-				"Loading configuration failed because of invalid input at uriPostTransformations: Regex is bad. Illegal repetition\n"
-						+ "{sp6}/resource/(\\d+).",
-				exception.getMessage());
+		assertTrue(
+				exception.getMessage().startsWith("Loading configuration failed because of invalid input at uriPostTransformations:")
+				&& exception.getMessage().contains("{sp6}/resource/(\\d+)"),
+				"{sp6}/resource/(\\d+) is an invalid regex and should have caused an exception when parsed");
 	}
 
 	@Test

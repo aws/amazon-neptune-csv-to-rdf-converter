@@ -20,6 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
@@ -71,6 +73,19 @@ public class NeptuneCsvInputParserTest {
 				() -> new NeptuneCsvInputParser(notExistingFile));
 		assertTrue(exception.getMessage()
 				.matches("Error creating input stream for CSV file .*" + notExistingFile.getPath()));
+	}
+
+	@Test
+	public void openFromInputStream() throws FileNotFoundException {
+
+		File validUtf8 = Paths.get("src", "test", "inputParserTest", "valid-utf8.csv").toFile();
+		FileInputStream ins = new FileInputStream(validUtf8);
+
+		try (NeptuneCsvInputParser parser = new NeptuneCsvInputParser(ins)) {
+			NeptuneCsvUserDefinedProperty property = ((NeptunePropertyGraphVertex) parser.next())
+					.getUserDefinedProperties().get(0);
+			assertEquals("Bärbel", ((NeptuneCsvSetValuedUserDefinedProperty) property).getValues().iterator().next());
+		}
 	}
 
 }
