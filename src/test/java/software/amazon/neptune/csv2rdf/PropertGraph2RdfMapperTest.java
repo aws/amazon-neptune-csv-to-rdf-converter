@@ -107,6 +107,7 @@ public class PropertGraph2RdfMapperTest {
 		mapping.setDefaultNamedGraph("dng:a");
 		mapping.setDefaultType("dt:a");
 		mapping.setDefaultPredicate("dp:a");
+		mapping.setEdgeContextNamespace("vn:");
 
 		mapper = new PropertyGraph2RdfMapper();
 		mapper.setMapping(mapping);
