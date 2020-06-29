@@ -322,7 +322,7 @@ public class PropertyGraph2RdfMappingTest {
 	}
 
 	@Test
-	public void testGetEdgeContextNamespace() {
+	public void testGetEdgeContextNamespaceFallback() {
 		final String eContext = mapping.getEdgeContextNamespace();
 
 		mapping.setEdgeContextNamespace(null);
