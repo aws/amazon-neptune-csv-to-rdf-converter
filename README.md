@@ -59,9 +59,9 @@ Using some simplified namespaces (see Configuration below for the details), the 
 	<vertex:2> <vproperty:code> "V" <dng:/> .
 	<vertex:2> <vproperty:country> "CA" <dng:/> .
 
-	<vertex:1> <edge:route> <vertex:2> <vertex:a> .
-	<vertex:a> <eproperty:distance> "166" <dng:/> .
-	<vertex:a> <eproperty:type> "highway" <dng:/> .
+	<vertex:1> <edge:route> <vertex:2> <econtext:a> .
+	<econtext:a> <eproperty:distance> "166" <dng:/> .
+	<econtext:a> <eproperty:type> "highway" <dng:/> .
 
 The result shows that **edge identifiers are stored as context** of the corresponding RDF statement, and
 the edge properties are statements about that context. The edge identifiers can be queried in SPARQL using
@@ -111,9 +111,9 @@ The resulting statements are now:
 	<city:V> <vproperty:name> "Vancouver" <dng:/> .
 	<city:V> <vproperty:code> "V" <dng:/> .
 	<city:V> <edge:country> <country:CA> <dng:/> .
-	<city:S> <edge:route> <city:V> <vertex:a> .
-	<vertex:a> <eproperty:distance> "166" <dng:/> .
-	<vertex:a> <eproperty:type> "highway" <dng:/> .
+	<city:S> <edge:route> <city:V> <econtext:a> .
+	<econtext:a> <eproperty:distance> "166" <dng:/> .
+	<econtext:a> <eproperty:type> "highway" <dng:/> .
 
 
 ## Configuration
@@ -215,7 +215,7 @@ The complete configuration for the small example above is:
 	mapper.mapping.typeNamespace=type:
 	mapper.mapping.vertexNamespace=vertex:
 	mapper.mapping.edgeNamespace=edge:
-	mapper.mapping.edgeContextNamespace=vertex:
+	mapper.mapping.edgeContextNamespace=econtext:
 	mapper.mapping.vertexPropertyNamespace=vproperty:
 	mapper.mapping.edgePropertyNamespace=eproperty:
 	mapper.mapping.defaultNamedGraph=dng:/
@@ -278,12 +278,12 @@ example above) of the following property graph
 	<vertex:3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <dt:/> <dng:/> .
 	<vertex:3> <vproperty:name> "Robert" <dng:/> .
 
-	<vertex:2> <edge:knows> <vertex:3> <vertex:1> .
-	<vertex:1> <eproperty:since> "yesterday" <dng:/> .
-	<vertex:2> <edge:knows> <vertex:3> <vertex:1> .
-	<vertex:1> <eproperty:since> "tomorrow" <dng:/> .
-	<vertex:2> <edge:knows> <vertex:3> <vertex:1> .
-	<vertex:1> <eproperty:personally> "true" <dng:/> .
+	<vertex:2> <edge:knows> <vertex:3> <econtext:1> .
+	<econtext:1> <eproperty:since> "yesterday" <dng:/> .
+	<vertex:2> <edge:knows> <vertex:3> <econtext:1> .
+	<econtext:1> <eproperty:since> "tomorrow" <dng:/> .
+	<vertex:2> <edge:knows> <vertex:3> <econtext:1> .
+	<econtext:1> <eproperty:personally> "true" <dng:/> .
 
 
 ## Building from source

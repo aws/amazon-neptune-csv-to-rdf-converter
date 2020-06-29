@@ -107,7 +107,7 @@ public class PropertGraph2RdfMapperTest {
 		mapping.setDefaultNamedGraph("dng:a");
 		mapping.setDefaultType("dt:a");
 		mapping.setDefaultPredicate("dp:a");
-		mapping.setEdgeContextNamespace("vn:");
+		mapping.setEdgeContextNamespace("ec:");
 
 		mapper = new PropertyGraph2RdfMapper();
 		mapper.setMapping(mapping);
@@ -407,7 +407,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,~from,~to,name\n1,related,2,3,x");
 		assertEquals(2, statements.size());
-		assertEquals(relation("vn:2", "en:related", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "en:related", "vn:3", "ec:1"), statements.get(0));
 		assertEquals(literal("vn:1", "epn:name", "x", "dng:a"), statements.get(1));
 	}
 
@@ -416,7 +416,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,~from,~to,name\n1,,2,3,x");
 		assertEquals(2, statements.size());
-		assertEquals(relation("vn:2", "dp:a", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "dp:a", "vn:3", "ec:1"), statements.get(0));
 		assertEquals(literal("vn:1", "epn:name", "x", "dng:a"), statements.get(1));
 	}
 
@@ -425,7 +425,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,~from,~to,name\n1,  ,2,3,x");
 		assertEquals(2, statements.size());
-		assertEquals(relation("vn:2", "dp:a", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "dp:a", "vn:3", "ec:1"), statements.get(0));
 		assertEquals(literal("vn:1", "epn:name", "x", "dng:a"), statements.get(1));
 	}
 
@@ -435,7 +435,7 @@ public class PropertGraph2RdfMapperTest {
 		List<Statement> statements = getStatementsForEdge(
 				"~id,~label,~from,~to,name\n1,related;related2;related3,2,3,x");
 		assertEquals(2, statements.size());
-		assertEquals(relation("vn:2", "en:related%3Brelated2%3Brelated3", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "en:related%3Brelated2%3Brelated3", "vn:3", "ec:1"), statements.get(0));
 		assertEquals(literal("vn:1", "epn:name", "x", "dng:a"), statements.get(1));
 	}
 
@@ -444,7 +444,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,~from,~to,name\n1,related,2,3,");
 		assertEquals(1, statements.size());
-		assertEquals(relation("vn:2", "en:related", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "en:related", "vn:3", "ec:1"), statements.get(0));
 	}
 
 	@Test
@@ -452,7 +452,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,name,~from,~to\n1,related,  ,2,3");
 		assertEquals(1, statements.size());
-		assertEquals(relation("vn:2", "en:related", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "en:related", "vn:3", "ec:1"), statements.get(0));
 	}
 
 	@Test
@@ -460,7 +460,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,~from,~to,name\n1,a,2,3");
 		assertEquals(1, statements.size());
-		assertEquals(relation("vn:2", "en:a", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "en:a", "vn:3", "ec:1"), statements.get(0));
 	}
 
 	@Test
@@ -468,7 +468,7 @@ public class PropertGraph2RdfMapperTest {
 
 		List<Statement> statements = getStatementsForEdge("~id,~label,~from,~to,name\n1,a,2,3,Alice,Bob");
 		assertEquals(2, statements.size());
-		assertEquals(relation("vn:2", "en:a", "vn:3", "vn:1"), statements.get(0));
+		assertEquals(relation("vn:2", "en:a", "vn:3", "ec:1"), statements.get(0));
 		assertEquals(literal("vn:1", "epn:name", "Alice", "dng:a"), statements.get(1));
 	}
 

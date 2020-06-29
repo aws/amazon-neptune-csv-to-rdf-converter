@@ -46,6 +46,7 @@ public class PropertyGraph2RdfMappingTest {
 		mapping.setEdgePropertyNamespace("epn:");
 		mapping.setDefaultNamedGraph("dng:a");
 		mapping.setDefaultType("dt:a");
+		mapping.setEdgeContextNamespace("ec:");
 	}
 
 	@Test
@@ -320,4 +321,16 @@ public class PropertyGraph2RdfMappingTest {
 				exception.getMessage());
 	}
 
+	@Test
+	public void testGetEdgeContextNamespace() {
+		final String eContext = mapping.getEdgeContextNamespace();
+
+		mapping.setEdgeContextNamespace(null);
+
+		assertEquals(mapping.getVertexNamespace(), mapping.getEdgeContextNamespace());
+
+		mapping.setEdgeContextNamespace(eContext);
+
+		assertEquals(eContext, mapping.getEdgeContextNamespace());
+	}
 }
