@@ -323,7 +323,7 @@ public class PropertyGraph2RdfMappingTest {
 
 	@Test
 	public void testGetEdgeContextNamespaceFallback() {
-		final String eContext = mapping.getEdgeContextNamespace();
+		final String eContext = "econtext";
 
 		mapping.setVertexNamespace("vns");
 		mapping.setEdgeContextNamespace(null);
