@@ -51,6 +51,7 @@ public class Csv2RdfConfigTest {
 		assertEquals("tn", converter.getMapper().getMapping().getTypeNamespace());
 		assertEquals("vn", converter.getMapper().getMapping().getVertexNamespace());
 		assertEquals("en", converter.getMapper().getMapping().getEdgeNamespace());
+		assertEquals("ec", converter.getMapper().getMapping().getEdgeContextNamespace());
 		assertEquals("vpn", converter.getMapper().getMapping().getVertexPropertyNamespace());
 		assertEquals("epn", converter.getMapper().getMapping().getEdgePropertyNamespace());
 		assertEquals("dng:a", converter.getMapper().getMapping().getDefaultNamedGraph().toString());

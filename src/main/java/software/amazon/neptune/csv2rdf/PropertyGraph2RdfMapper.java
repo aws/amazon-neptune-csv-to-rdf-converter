@@ -58,6 +58,7 @@ import software.amazon.neptune.csv2rdf.PropertyGraph2RdfMapping.PropertyGraphVer
  * mapper.mapping.typeNamespace=type:
  * mapper.mapping.vertexNamespace=vertex:
  * mapper.mapping.edgeNamespace=edge:
+ * mapper.mapping.edgeContextNamespace=econtext:
  * mapper.mapping.vertexPropertyNamespace=vproperty:
  * mapper.mapping.edgePropertyNamespace=eproperty:
  * mapper.mapping.defaultNamedGraph=dng:/
@@ -93,9 +94,9 @@ import software.amazon.neptune.csv2rdf.PropertyGraph2RdfMapping.PropertyGraphVer
  * <vertex:2> <vproperty:code> "V" <dng:/> .
  * <vertex:2> <vproperty:country> "CA" <dng:/> .
  *
- * <vertex:1> <edge:route> <vertex:2> <vertex:a> .
- * <vertex:a> <eproperty:distance> "166" <dng:/> .
- * <vertex:a> <eproperty:type> "highway" <dng:/> .
+ * <vertex:1> <edge:route> <vertex:2> <econtext:a> .
+ * <econtext:a> <eproperty:distance> "166" <dng:/> .
+ * <econtext:a> <eproperty:type> "highway" <dng:/> .
  * }
  * </pre>
  */

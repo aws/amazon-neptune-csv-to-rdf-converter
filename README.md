@@ -58,10 +58,10 @@ Using some simplified namespaces (see Configuration below for the details), the 
 	<vertex:2> <vproperty:name> "Vancouver" <dng:/> .
 	<vertex:2> <vproperty:code> "V" <dng:/> .
 	<vertex:2> <vproperty:country> "CA" <dng:/> .
-	
-	<vertex:1> <edge:route> <vertex:2> <vertex:a> .
-	<vertex:a> <eproperty:distance> "166" <dng:/> .
-	<vertex:a> <eproperty:type> "highway" <dng:/> .
+
+	<vertex:1> <edge:route> <vertex:2> <econtext:a> .
+	<econtext:a> <eproperty:distance> "166" <dng:/> .
+	<econtext:a> <eproperty:type> "highway" <dng:/> .
 
 The result shows that **edge identifiers are stored as context** of the corresponding RDF statement, and
 the edge properties are statements about that context. The edge identifiers can be queried in SPARQL using
@@ -73,7 +73,7 @@ The label `city` becomes the RDF type `<type:City>`.
 Additionally, the mapping can add **RDFS labels** to the vertices. For example, the configuration
 
 	mapper.mapping.pgVertexType2PropertyForRdfsLabel.city=name
-    
+
  creates two additional RDF statements:
 
 	<vertex:1> <http://www.w3.org/2000/01/rdf-schema#label> "Seattle" <dng:/> .
@@ -111,9 +111,9 @@ The resulting statements are now:
 	<city:V> <vproperty:name> "Vancouver" <dng:/> .
 	<city:V> <vproperty:code> "V" <dng:/> .
 	<city:V> <edge:country> <country:CA> <dng:/> .
-	<city:S> <edge:route> <city:V> <vertex:a> .
-	<vertex:a> <eproperty:distance> "166" <dng:/> .
-	<vertex:a> <eproperty:type> "highway" <dng:/> .
+	<city:S> <edge:route> <city:V> <econtext:a> .
+	<econtext:a> <eproperty:distance> "166" <dng:/> .
+	<econtext:a> <eproperty:type> "highway" <dng:/> .
 
 
 ## Configuration
@@ -126,12 +126,13 @@ optional. It's also possible to set the file extension of the input files.
 If no configuration file is given, the following default values are used:
 
 	inputFileExtension=csv
-	
+
 	mapper.alwaysAddPropertyStatements=true
-	
+
 	mapper.mapping.typeNamespace=http://aws.amazon.com/neptune/csv2rdf/class/
 	mapper.mapping.vertexNamespace=http://aws.amazon.com/neptune/csv2rdf/resource/
 	mapper.mapping.edgeNamespace=http://aws.amazon.com/neptune/csv2rdf/objectProperty/
+	mapper.mapping.edgeContextNamespace=http://aws.amazon.com/neptune/csv2rdf/resource/
 	mapper.mapping.vertexPropertyNamespace=http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/
 	mapper.mapping.edgePropertyNamespace=http://aws.amazon.com/neptune/csv2rdf/datatypeProperty/
 	mapper.mapping.defaultNamedGraph=http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph
@@ -144,7 +145,10 @@ as RDF literal statement with that property. For the small example above, if the
 
 	<city:S> <vproperty:name> "Seattle" <dng:/> .
 	<city:V> <vproperty:name> "Vancouver" <dng:/> .
-    
+
+The setting `mapper.mapping.edgeContextNamespace` takes effect only when explicitly set. Otherwise, it uses
+value set by `mapper.mapping.vertexNamespace`.
+
 **Vertex type to RDFS label mapping**
 
 Vertex types are defined by vertex labels. The option `mapper.mapping.pgVertexType2PropertyForRdfsLabel.<vertex type>.<vertex property>` is used to specify a mapping from a vertex type to to a vertex property, whose value is then used
@@ -207,19 +211,20 @@ only in cases where the number of mappings is small or if the amount of main mem
 The complete configuration for the small example above is:
 
 	mapper.alwaysAddPropertyStatements=false
-	
+
 	mapper.mapping.typeNamespace=type:
 	mapper.mapping.vertexNamespace=vertex:
 	mapper.mapping.edgeNamespace=edge:
+	mapper.mapping.edgeContextNamespace=econtext:
 	mapper.mapping.vertexPropertyNamespace=vproperty:
 	mapper.mapping.edgePropertyNamespace=eproperty:
 	mapper.mapping.defaultNamedGraph=dng:/
 	mapper.mapping.defaultType=dt:/
-	mapper.mapping.defaultPredicate=dp:/	
+	mapper.mapping.defaultPredicate=dp:/
 	mapper.mapping.pgVertexType2PropertyForRdfsLabel.city=name
-	
+
 	mapper.mapping.pgProperty2RdfResourcePattern.country=country:{{VALUE}}
-	
+
 	transformer.uriPostTransformations.1.srcPattern=vertex:([0-9]+)
 	transformer.uriPostTransformations.1.typeUri=type:City
 	transformer.uriPostTransformations.1.propertyUri=vproperty:code
@@ -273,12 +278,12 @@ example above) of the following property graph
 	<vertex:3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <dt:/> <dng:/> .
 	<vertex:3> <vproperty:name> "Robert" <dng:/> .
 
-	<vertex:2> <edge:knows> <vertex:3> <vertex:1> .
-	<vertex:1> <eproperty:since> "yesterday" <dng:/> .
-	<vertex:2> <edge:knows> <vertex:3> <vertex:1> .
-	<vertex:1> <eproperty:since> "tomorrow" <dng:/> .
-	<vertex:2> <edge:knows> <vertex:3> <vertex:1> .
-	<vertex:1> <eproperty:personally> "true" <dng:/> .
+	<vertex:2> <edge:knows> <vertex:3> <econtext:1> .
+	<econtext:1> <eproperty:since> "yesterday" <dng:/> .
+	<vertex:2> <edge:knows> <vertex:3> <econtext:1> .
+	<econtext:1> <eproperty:since> "tomorrow" <dng:/> .
+	<vertex:2> <edge:knows> <vertex:3> <econtext:1> .
+	<econtext:1> <eproperty:personally> "true" <dng:/> .
 
 
 ## Building from source

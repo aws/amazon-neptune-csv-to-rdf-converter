@@ -104,6 +104,13 @@ public class PropertyGraph2RdfMapping {
 
 	/**
 	 *
+	 * Namespace in which edge contexts are stored.
+	 */
+	@Setter
+	private String edgeContextNamespace;
+
+	/**
+	 *
 	 * Namespace in which edge properties are stored
 	 */
 	@Getter
@@ -215,6 +222,10 @@ public class PropertyGraph2RdfMapping {
 		this.defaultPredicate = toValidatedIri(defaultProperty);
 	}
 
+	public String getEdgeContextNamespace() {
+		return (this.edgeContextNamespace == null ? getVertexNamespace() : this.edgeContextNamespace);
+	}
+
 	/**
 	 *
 	 * Create an IRI that represents a vertex type as class (aka type) in RDF
@@ -263,6 +274,19 @@ public class PropertyGraph2RdfMapping {
 	IRI edgeIri(@NonNull String edge) {
 
 		String iri = edgeNamespace + encode(edge);
+		return toValidatedIri(iri);
+	}
+
+	/**
+	 *
+	 * Create an IRI that represents an edge context in RDF.
+	 *
+	 * @param context local context name, will be URI encoded.
+	 * @return {@link PropertyGraph2RdfMapping#getEdgeContextNamespace()} + encoded edge context.
+	 * @throws Csv2RdfException if the IRI cannot be created.
+	 */
+	IRI edgeContextIri(@NonNull String context) {
+		String iri = getEdgeContextNamespace() + encode(context);
 		return toValidatedIri(iri);
 	}
 
@@ -561,14 +585,14 @@ public class PropertyGraph2RdfMapping {
 		 * @param object    local name, will be prefixed with
 		 *                  {@link PropertyGraph2RdfMapping#vertexIri}
 		 * @param context   local name, will be prefixed with
-		 *                  {@link PropertyGraph2RdfMapping#vertexIri}
-		 * @return a statement in {@link PropertyGraph2RdfMapping#vertexIri}(context)
+		 *                  {@link PropertyGraph2RdfMapping#edgeContextIri}
+		 * @return a statement in {@link PropertyGraph2RdfMapping#edgeContextIri}(context)
 		 */
 		public Statement createRelationStatement(@NonNull String subject, @NonNull String predicate,
 				@NonNull String object, @NonNull String context) {
 
 			return mapping.statement(mapping.vertexIri(subject), mapping.edgeIri(predicate), mapping.vertexIri(object),
-					mapping.vertexIri(context));
+					mapping.edgeContextIri(context));
 		}
 
 		/**
@@ -578,15 +602,15 @@ public class PropertyGraph2RdfMapping {
 		 * @param object  local name, will be prefixed with
 		 *                {@link PropertyGraph2RdfMapping#vertexIri}
 		 * @param context local name, will be prefixed with
-		 *                {@link PropertyGraph2RdfMapping#vertexIri}
-		 * @return a statement in {@link PropertyGraph2RdfMapping#vertexIri}(context)
+		 *                {@link PropertyGraph2RdfMapping#edgeContextIri}
+		 * @return a statement in {@link PropertyGraph2RdfMapping#edgeContextIri}(context)
 		 *         using {@link PropertyGraph2RdfMapping#defaultPredicate} as predicate
 		 */
 		public Statement createRelationStatement(@NonNull String subject, @NonNull String object,
 				@NonNull String context) {
 
 			return mapping.statement(mapping.vertexIri(subject), mapping.getDefaultPredicate(),
-					mapping.vertexIri(object), mapping.vertexIri(context));
+					mapping.vertexIri(object), mapping.edgeContextIri(context));
 		}
 
 		/**
