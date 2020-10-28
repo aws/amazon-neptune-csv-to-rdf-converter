@@ -53,7 +53,7 @@ public class Csv2Rdf implements Callable<Integer> {
 	private static final String PARAM_LABEL_OUTPUT_DIRECTORY = "<output directory>";
 
 	@Option(names = { "-c",
-			"--config" }, required = false, arity = "1", paramLabel = PARAM_LABEL_CONFIGURATION_FILE, description = "Propery file containing the configuration.")
+			"--config" }, required = false, arity = "1", paramLabel = PARAM_LABEL_CONFIGURATION_FILE, description = "Property file containing the configuration.")
 	private File configFile;
 
 	@Option(names = { "-i",

@@ -1,6 +1,6 @@
 <http://example.org/resource/country/%7B%3A%3AHeiz%C3%B6lr%C3%BCcksto%C3%9Fabd%C3%A4mpfungsventil%3A%3A%7D> <http://example.org/objectProperty/route> <http://example.org/resource/country/C> <http://example.org/edgeContext/11> .
-<http://example.org/resource/11> <http://example.org/datatypeProperty/stars> "5"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://example.org/edgeContext/11> <http://example.org/datatypeProperty/stars> "5"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
 <http://example.org/resource/2> <http://example.org/objectProperty/route> <http://example.org/resource/country/D> <http://example.org/edgeContext/12> .
-<http://example.org/resource/12> <http://example.org/datatypeProperty/stars> "2"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://example.org/edgeContext/12> <http://example.org/datatypeProperty/stars> "2"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
 <http://example.org/resource/country/C> <http://example.org/objectProperty/route> <http://example.org/resource/country/%7B%3A%3AHeiz%C3%B6lr%C3%BCcksto%C3%9Fabd%C3%A4mpfungsventil%3A%3A%7D> <http://example.org/edgeContext/13> .
-<http://example.org/resource/13> <http://example.org/datatypeProperty/stars> "3"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .
+<http://example.org/edgeContext/13> <http://example.org/datatypeProperty/stars> "3"^^<http://www.w3.org/2001/XMLSchema#integer> <http://aws.amazon.com/neptune/vocab/v01/DefaultNamedGraph> .

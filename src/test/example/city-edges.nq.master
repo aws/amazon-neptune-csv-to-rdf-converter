@@ -1,3 +1,3 @@
 <city:S> <edge:route> <city:V> <econtext:a> .
-<vertex:a> <eproperty:distance> "166" <dng:/> .
-<vertex:a> <eproperty:type> "highway" <dng:/> .
+<econtext:a> <eproperty:distance> "166" <dng:/> .
+<econtext:a> <eproperty:type> "highway" <dng:/> .
