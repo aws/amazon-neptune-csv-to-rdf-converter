@@ -1,6 +1,6 @@
 <vertex:2> <edge:knows> <vertex:3> <econtext:1> .
-<vertex:1> <eproperty:since> "yesterday" <dng:/> .
+<econtext:1> <eproperty:since> "yesterday" <dng:/> .
 <vertex:2> <edge:knows> <vertex:3> <econtext:1> .
-<vertex:1> <eproperty:since> "tomorrow" <dng:/> .
+<econtext:1> <eproperty:since> "tomorrow" <dng:/> .
 <vertex:2> <edge:knows> <vertex:3> <econtext:1> .
-<vertex:1> <eproperty:personally> "true" <dng:/> .
+<econtext:1> <eproperty:personally> "true" <dng:/> .

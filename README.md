@@ -147,7 +147,7 @@ as RDF literal statement with that property. For the small example above, if the
 	<city:V> <vproperty:name> "Vancouver" <dng:/> .
 
 The setting `mapper.mapping.edgeContextNamespace` takes effect only when explicitly set. Otherwise, it uses
-value set by `mapper.mapping.vertexNamespace`.
+the value set for `mapper.mapping.vertexNamespace`.
 
 **Vertex type to RDFS label mapping**
 
@@ -172,8 +172,8 @@ An URI Post Transformation consists of four elements:
 	uriPostTransformation.<ID>.propertyUri=<URI>
 	uriPostTransformation.<ID>.dstPattern=<URI pattern>
 
-A positive integer `<ID>` is required to group the elements. The groupingnumbers of several transformation
-configurations do not need to be consecutive. The transformation rules will be executed in ascending orde
+A positive integer `<ID>` is required to group the elements. The grouping numbers of several transformation
+configurations do not need to be consecutive. The transformation rules will be executed in ascending order
 according to the grouping numbers. All four configuration items are required:
 
 * `srcPattern` is a URI with a single regular expression group, e.g.

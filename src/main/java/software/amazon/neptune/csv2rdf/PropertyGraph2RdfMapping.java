@@ -616,7 +616,7 @@ public class PropertyGraph2RdfMapping {
 		/**
 		 *
 		 * @param subject   local name, will be prefixed with
-		 *                  {@link PropertyGraph2RdfMapping#vertexIri}
+		 *                  {@link PropertyGraph2RdfMapping#edgeContextIri}
 		 * @param predicate local name, will be prefixed with
 		 *                  {@link PropertyGraph2RdfMapping#edgePropertyIri}
 		 * @param literal   literal value
@@ -626,7 +626,7 @@ public class PropertyGraph2RdfMapping {
 		public Statement createLiteralStatement(@NonNull String subject, @NonNull String predicate,
 				@NonNull String literal, @NonNull DataType dataType) {
 
-			return mapping.statement(mapping.vertexIri(subject), mapping.edgePropertyIri(predicate),
+			return mapping.statement(mapping.edgeContextIri(subject), mapping.edgePropertyIri(predicate),
 					mapping.value(literal, dataType), mapping.getDefaultNamedGraph());
 		}
 
