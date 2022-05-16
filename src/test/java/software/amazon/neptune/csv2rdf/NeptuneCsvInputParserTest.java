@@ -23,6 +23,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -85,6 +87,26 @@ public class NeptuneCsvInputParserTest {
 			NeptuneCsvUserDefinedProperty property = ((NeptunePropertyGraphVertex) parser.next())
 					.getUserDefinedProperties().get(0);
 			assertEquals("Bärbel", ((NeptuneCsvSetValuedUserDefinedProperty) property).getValues().iterator().next());
+		}
+	}
+	@Test
+	public void escapedSemicolon() {
+
+		File escapedSemi = Paths.get("src", "test", "inputParserTest", "escaped-semicolon.csv").toFile();
+		try (NeptuneCsvInputParser parser = new NeptuneCsvInputParser(escapedSemi)) {
+
+			NeptunePropertyGraphVertex v = (NeptunePropertyGraphVertex) parser.next();
+			List<NeptuneCsvUserDefinedProperty> props = v.getUserDefinedProperties();
+
+			Collection<String> namesValues = props.get(0).getValues();
+			Collection<String> labels = v.getLabels();
+
+			assertTrue(labels.contains("person;"));
+			assertTrue(labels.contains("boss"));
+			assertEquals(labels.size(), 2);
+			assertEquals(namesValues.size(), 2);
+			assertTrue(namesValues.contains("John;Smith"));
+			assertTrue(namesValues.contains("Jane;Smith"));
 		}
 	}
 

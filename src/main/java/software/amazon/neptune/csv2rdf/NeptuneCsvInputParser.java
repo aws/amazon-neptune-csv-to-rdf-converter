@@ -341,9 +341,9 @@ public class NeptuneCsvInputParser implements AutoCloseable, Iterator<NeptunePro
 			return vertex;
 		}
 
-		for (String labelValue : labels.split(NeptuneCsvUserDefinedColumn.ARRAY_VALUE_SEPARATOR)) {
+		for (String labelValue : labels.split("(?<!\\\\)" + NeptuneCsvUserDefinedColumn.ARRAY_VALUE_SEPARATOR)) {
 			if (labelValue != null && !labelValue.isEmpty()) {
-				vertex.add(labelValue);
+				vertex.add(labelValue.replace("\\;",";"));
 			}
 		}
 
