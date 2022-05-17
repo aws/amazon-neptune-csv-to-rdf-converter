@@ -304,11 +304,11 @@ public abstract class NeptunePropertyGraphElement {
 		@Override
 		public void add(@NonNull String value) {
 
-			for (String v : value.split(NeptuneCsvUserDefinedColumn.ARRAY_VALUE_SEPARATOR)) {
+			for (String v : value.split("(?<!\\\\)" + NeptuneCsvUserDefinedColumn.ARRAY_VALUE_SEPARATOR)) {
 				if (v == null || v.isEmpty()) {
 					continue;
 				}
-				super.add(v);
+				super.add(v.replace("\\;",";"));
 			}
 		}
 	}
