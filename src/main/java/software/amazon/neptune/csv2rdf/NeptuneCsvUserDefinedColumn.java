@@ -286,8 +286,6 @@ public class NeptuneCsvUserDefinedColumn {
 		if (!matcher.matches() || matcher.groupCount() < GROUPS_IN_HEADER_PATTERN) {
 			throw new Csv2RdfException("Invalid column encountered while parsing header: " + trimmed);
 		}
-		System.out.println(matcher.group(0));
-		System.out.println(matcher.group(1));
 
 		String columnName = matcher.group(1);
 		if (columnName.isEmpty()) {
