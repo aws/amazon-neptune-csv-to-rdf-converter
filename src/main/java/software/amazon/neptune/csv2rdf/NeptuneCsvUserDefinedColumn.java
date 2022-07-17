@@ -177,7 +177,7 @@ public class NeptuneCsvUserDefinedColumn {
 	 * data type are separated by a colon. Name and data type consist of
 	 * non-whitespace characters.
 	 */
-	private static final Pattern USER_HEADER_PATTERN = Pattern.compile("^(\\S+?)(:\\S+)?$");
+	private static final Pattern USER_HEADER_PATTERN = Pattern.compile("^(\\S+?)((?<!\\\\):\\S+)?$");
 	private static final int GROUPS_IN_HEADER_PATTERN = 2;
 
 	/**
@@ -286,11 +286,14 @@ public class NeptuneCsvUserDefinedColumn {
 		if (!matcher.matches() || matcher.groupCount() < GROUPS_IN_HEADER_PATTERN) {
 			throw new Csv2RdfException("Invalid column encountered while parsing header: " + trimmed);
 		}
+		System.out.println(matcher.group(0));
+		System.out.println(matcher.group(1));
 
 		String columnName = matcher.group(1);
 		if (columnName.isEmpty()) {
 			throw new Csv2RdfException("Column name is not present for header field: " + trimmed);
 		}
+		columnName = columnName.replace("\\:",":");
 
 		String typeString = matcher.group(2);
 		if (typeString == null || typeString.isEmpty()) {

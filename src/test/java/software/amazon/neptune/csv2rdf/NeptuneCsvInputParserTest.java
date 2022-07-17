@@ -24,7 +24,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -89,6 +91,7 @@ public class NeptuneCsvInputParserTest {
 			assertEquals("Bärbel", ((NeptuneCsvSetValuedUserDefinedProperty) property).getValues().iterator().next());
 		}
 	}
+
 	@Test
 	public void escapedSemicolon() {
 
@@ -110,4 +113,18 @@ public class NeptuneCsvInputParserTest {
 		}
 	}
 
+	@Test
+	public void escapedColonInHeader() {
+		File escapedColon = Paths.get("src", "test", "inputParserTest", "colon-in-header.csv").toFile();
+		try (NeptuneCsvInputParser parser = new NeptuneCsvInputParser(escapedColon)) {
+
+			NeptunePropertyGraphVertex v = (NeptunePropertyGraphVertex) parser.next();
+			List<NeptuneCsvUserDefinedProperty> props = v.getUserDefinedProperties();
+			String propName1 = props.get(0).getName();
+			String propName2 = props.get(1).getName();
+
+			assertEquals(propName1,"http://example.com/age");
+			assertEquals(propName2,"multi:backslash\\\\:header");
+		}
+	}
 }
