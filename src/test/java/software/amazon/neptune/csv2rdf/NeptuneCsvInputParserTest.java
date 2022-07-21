@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Test;
 import software.amazon.neptune.csv2rdf.NeptunePropertyGraphElement.NeptuneCsvSetValuedUserDefinedProperty;
 import software.amazon.neptune.csv2rdf.NeptunePropertyGraphElement.NeptuneCsvUserDefinedProperty;
 import software.amazon.neptune.csv2rdf.NeptunePropertyGraphElement.NeptunePropertyGraphVertex;
+import software.amazon.neptune.csv2rdf.NeptuneCsvUserDefinedColumn.DataType;
 
 public class NeptuneCsvInputParserTest {
 
@@ -89,6 +90,7 @@ public class NeptuneCsvInputParserTest {
 			assertEquals("Bärbel", ((NeptuneCsvSetValuedUserDefinedProperty) property).getValues().iterator().next());
 		}
 	}
+
 	@Test
 	public void escapedSemicolon() {
 
@@ -110,4 +112,32 @@ public class NeptuneCsvInputParserTest {
 		}
 	}
 
+	@Test
+	public void escapedColonInHeader() {
+		File escapedColon = Paths.get("src", "test", "inputParserTest", "colon-in-header.csv").toFile();
+		try (NeptuneCsvInputParser parser = new NeptuneCsvInputParser(escapedColon)) {
+
+			NeptunePropertyGraphVertex v = (NeptunePropertyGraphVertex) parser.next();
+			List<NeptuneCsvUserDefinedProperty> props = v.getUserDefinedProperties();
+			String propName1 = props.get(0).getName();
+			String propName2 = props.get(1).getName();
+			String propName3 = props.get(2).getName();
+			String propName4 = props.get(3).getName();
+
+			DataType dt1 = props.get(0).getDataType();
+			DataType dt2 = props.get(1).getDataType();
+			DataType dt3 = props.get(2).getDataType();
+			DataType dt4 = props.get(3).getDataType();
+
+			assertEquals("http://example.com/age", propName1);
+			assertEquals("multi:backslash\\\\:header", propName2);
+			assertEquals("noDataType:", propName3);
+			assertEquals("having\\back\\slashes:end", propName4);
+
+			assertEquals(DataType.INT, dt1);
+			assertEquals(DataType.STRING, dt2);
+			assertEquals(DataType.STRING, dt3);
+			assertEquals(DataType.INT, dt4);
+		}
+	}
 }

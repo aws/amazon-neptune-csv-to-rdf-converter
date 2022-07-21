@@ -175,9 +175,10 @@ public class NeptuneCsvUserDefinedColumn {
 	/**
 	 * A column name consists of two parts: name and optional data type. Name and
 	 * data type are separated by a colon. Name and data type consist of
-	 * non-whitespace characters.
+	 * non-whitespace characters. If a colon appears within the column name,
+	 * it must be escaped by preceding it with a backslash: {@code \:}.
 	 */
-	private static final Pattern USER_HEADER_PATTERN = Pattern.compile("^(\\S+?)(:\\S+)?$");
+	private static final Pattern USER_HEADER_PATTERN = Pattern.compile("^(\\S+?)((?<!\\\\):\\S+)?$");
 	private static final int GROUPS_IN_HEADER_PATTERN = 2;
 
 	/**
@@ -291,6 +292,7 @@ public class NeptuneCsvUserDefinedColumn {
 		if (columnName.isEmpty()) {
 			throw new Csv2RdfException("Column name is not present for header field: " + trimmed);
 		}
+		columnName = columnName.replace("\\:",":");
 
 		String typeString = matcher.group(2);
 		if (typeString == null || typeString.isEmpty()) {
