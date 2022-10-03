@@ -212,8 +212,12 @@ public class Csv2RdfIntegrationTest {
 			ZipEntry zipEntry = zis.getNextEntry();
 
 			while (zipEntry != null) {
+				final Path zipEntryPath = outputDirectory.resolve(zipEntry.getName());
+				if (!zipEntryPath.normalize().startsWith(outputDirectory.normalize())) {
+					throw new IOException("Bad zip entry");
+				}
 				try (FileOutputStream fos = new FileOutputStream(
-						outputDirectory.resolve(zipEntry.getName()).toFile());) {
+						zipEntryPath.toFile());) {
 					int len;
 					while ((len = zis.read(buffer)) > 0) {
 						fos.write(buffer, 0, len);
